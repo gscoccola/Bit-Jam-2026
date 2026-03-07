@@ -1,0 +1,67 @@
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+
+public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
+{
+    public bool IsSelectable = true;
+    public bool IsSelected;
+
+    [SerializeField] private float _force = 5f;
+
+    private Camera _camera;
+    private Rigidbody2D _rb;
+    private Vector2 _grabbedLocalPos;
+
+    public UnityEvent OnSelected;
+    public UnityEvent OnDeSelected;
+
+    private void Awake()
+    {
+        _camera = FindAnyObjectByType<Camera>();
+        IsSelectable = true;
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (!IsSelected || !IsSelectable) return;
+
+        Vector3 mouseWorldPos = GetMouseWorldPos();
+        Vector3 mouseRelativePos = (mouseWorldPos - transform.position)/*.normalized*/;
+        Vector3 forceVector = mouseRelativePos.normalized * Mathf.Min(mouseRelativePos.magnitude, 0.4f);
+        Vector2 grabbedWorldPos = transform.TransformPoint(_grabbedLocalPos);
+        _rb.AddForceAtPosition(_force * Time.fixedDeltaTime * forceVector.Flatten(), grabbedWorldPos,
+        ForceMode2D.Impulse);
+    }
+
+    private void OnMouseAction(bool mouseDown)
+    {
+        IsSelected = mouseDown;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Debug.Log("Pointer Up");
+        OnMouseAction(false);
+        OnDeSelected?.Invoke();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log("Pointer Down");
+        if (!IsSelectable) return;
+        _grabbedLocalPos = transform.InverseTransformPoint(GetMouseWorldPos());
+        OnSelected?.Invoke();
+        OnMouseAction(true);
+    }
+
+    private Vector2 GetMouseWorldPos()
+    {
+        Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+        // Clamp the new position to the bounds of the screen
+        //newPos = new Vector3(Mathf.Clamp(newPos.x, -10f, 10f), Mathf.Clamp(newPos.y, -5.625f, 5.625f), newPos.z);
+        return _camera.ScreenToWorldPoint(mouseScreenPos);
+    }
+}
