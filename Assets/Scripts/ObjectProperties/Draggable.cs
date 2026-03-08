@@ -43,14 +43,12 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("Pointer Up");
         OnMouseAction(false);
         OnDeSelected?.Invoke();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("Pointer Down");
         if (!IsSelectable) return;
         _grabbedLocalPos = transform.InverseTransformPoint(GetMouseWorldPos());
         OnSelected?.Invoke();
