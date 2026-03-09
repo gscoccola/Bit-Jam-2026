@@ -26,8 +26,9 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     private void FixedUpdate()
     {
-        if (!IsSelected || !IsSelectable) return;
 
+        if (!IsSelected) return;
+        if (!IsSelectable) Deselect();
         Vector3 mouseWorldPos = GetMouseWorldPos();
         Vector3 mouseRelativePos = (mouseWorldPos - transform.position)/*.normalized*/;
         Vector3 forceVector = mouseRelativePos.normalized * Mathf.Min(mouseRelativePos.magnitude, 0.4f);
@@ -42,6 +43,11 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     }
 
     public void OnPointerUp(PointerEventData eventData)
+    {
+        Deselect();
+    }
+
+    private void Deselect()
     {
         OnMouseAction(false);
         OnDeSelected?.Invoke();

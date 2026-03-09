@@ -29,6 +29,14 @@ public class PositionActivation : MonoBehaviour
             _hingeJoint = GetComponent<HingeJoint2D>();
             if (_hingeJoint != null ) _range = _hingeJoint.limits.max - _hingeJoint.limits.min;
         } 
+        else if (_positionCheck == PositionCheck.XAxis)
+        {
+            _range = transform.lossyScale.x;
+        }
+        else if (_positionCheck == PositionCheck.YAxis)
+        {
+            _range = transform.lossyScale.y;
+        }
 
         if (_activationType == ActivationType.Continuous)
         {
@@ -62,14 +70,14 @@ public class PositionActivation : MonoBehaviour
         if (_activationType == ActivationType.Continuous)
         {
             Magnitude = Mathf.Abs(_currentValue - _initialValue) / _range;
-            _slider.value = Magnitude;
+            //_slider.value = Magnitude;
             ValueChanged?.Invoke(Magnitude);
         }
         else if (_activationType == ActivationType.Discrete)
         {
             bool wasActivated = IsActivated;
-            IsActivated = Mathf.Abs(_currentValue - _initialValue) >= _threshold;
-            _image.enabled = IsActivated;
+            IsActivated = Mathf.Abs(_currentValue - _initialValue) / _range >= _threshold;
+            //_image.enabled = IsActivated;
             if (IsActivated != wasActivated)
             {
                 Activated?.Invoke(IsActivated);
