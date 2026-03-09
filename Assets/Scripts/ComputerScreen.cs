@@ -5,45 +5,77 @@ using System.Collections.Generic;
 public class ComputerScreen : Singleton<ComputerScreen>
 {
     [SerializeField] private TextMeshProUGUI _text;
-    private Dictionary<CurrentLevel, string[]> _postShockTexts;
-    private string[] _preShockTexts;
-    private string[] _unpoweredTexts;
+    private Dictionary<CurrentLevel, RandomText> _postShockTexts;
+    private RandomText _preShockTexts;
+    private RandomText _unpoweredTexts;
 
     private void Start()
     {
-        _postShockTexts = new Dictionary<CurrentLevel, string[]>
+        _postShockTexts = new Dictionary<CurrentLevel, RandomText>
         {
-            { CurrentLevel.Safe, new[]{"Mhh... Suspicious", "What Happened?"} },
-            { CurrentLevel.Injury, new[]{"Not enough", "Unfortunate"} },
-            { CurrentLevel.Lethal, new[]{"Well done!", "Crispy..."} },
+            { CurrentLevel.Safe, new RandomText( new[]{"Mhh... Suspicious", "What Happened?"}) },
+            { CurrentLevel.Injury, new RandomText(new[]{"Not enough", "Unfortunate"}) },
+            { CurrentLevel.Lethal, new RandomText(new[]{"Well done!", "Crispy..."}) },
         };
 
-        _preShockTexts = new string[]
+        _preShockTexts = new RandomText( new string[]
         {
             "Do it",
             "Dispense some justice",
             "Here we go!"
-        };
+        });
 
-        _unpoweredTexts = new string[]
+        _unpoweredTexts = new RandomText(new string[]
         {
             "Power is off",
             "Switch on the power first!",
-        };
+            "Pull the power switch...",
+        });
     }
 
     public void PostShockText(CurrentLevel currentLevel)
     {
-        _text.text = _postShockTexts[currentLevel][Random.Range(0, _postShockTexts[currentLevel].Length)];
+        _text.text = _postShockTexts[currentLevel].GetText();
     }
 
     public void PreShockText()
     {
-        _text.text = _preShockTexts[Random.Range(0, _preShockTexts.Length)];
+        _text.text = _preShockTexts.GetText();
     }
 
     public void UnpoweredText()
     {
-        _text.text = _unpoweredTexts[Random.Range(0, _unpoweredTexts.Length)];
+        _text.text = _unpoweredTexts.GetText();
+    }
+}
+
+
+public class RandomText
+{
+    private string[] _texts;
+    private bool _wasUsed;
+    private int _lastIndex;
+    public RandomText(string[] texts)
+    {
+        _texts = texts;
+    }
+    public string GetText()
+    {
+        int index;
+
+        if (!_wasUsed || _texts.Length == 1)
+        {
+            index = Random.Range(0, _texts.Length);
+        }
+        else
+        {
+            index = Random.Range(0, _texts.Length - 1);
+            if (index >= _lastIndex) index = (index + 1);
+        }
+
+
+        _wasUsed = true;
+        _lastIndex = index;
+        return _texts[index];
     }
 }
