@@ -11,40 +11,46 @@ public class ControlPanel : MonoBehaviour
 
 
     [Header("Control Panel Components")]
-    [SerializeField] private PositionActivation _powerSwitch;
+    [SerializeField] private DiscreteButton _powerSwitch;
     [SerializeField] private PositionActivation _currentDial;
     [SerializeField] private PositionActivation _engageLever;
+    [SerializeField] private PositionActivation _outputSwitch;
+
 
     [Header("Displays")]
-    [SerializeField] private Image _powerLight;
     [SerializeField] private Slider _currentSlider;
-    [SerializeField] private Image _engagedLight;
+    [SerializeField] private Sprite[] _outputIndicatorSprites;
+    [SerializeField] private SpriteRenderer _outputIndicator;
 
     private AutoReturn _leverAutoReturn;
-    private AutoReturn _switchAutoReturn;
-    private AutoComplete _switchAutoComplete;
+    private Draggable _currentDialDraggable;
+    private Draggable _engageDialDraggable;
+    private Draggable _outputSwitchDraggable;
+    private AutoReturn _outputSwitchAutoreturn;
     private void Awake()
     {
-        _powerSwitch.Activated.AddListener(_powerLight.gameObject.SetActive);
         _currentDial.ValueChanged.AddListener(value => _currentSlider.value = value);
         _engageLever.Activated.AddListener(TryEngageChair);
+        _outputSwitch.Activated.AddListener(isOn => _outputIndicator.sprite = isOn ? _outputIndicatorSprites[1] : _outputIndicatorSprites[0]);
         _leverAutoReturn = _engageLever.GetComponent<AutoReturn>();
-        _switchAutoReturn = _powerSwitch.GetComponent<AutoReturn>();
-        _switchAutoComplete = _powerSwitch.GetComponent<AutoComplete>();
+        _currentDialDraggable = _currentDial.GetComponent<Draggable>();
+        _engageDialDraggable = _engageLever.GetComponent<Draggable>();
+        _outputSwitchDraggable = _outputSwitch.GetComponent<Draggable>();
+        _outputSwitchAutoreturn = _outputSwitch.GetComponent<AutoReturn>();
     }
 
     private void TryEngageChair(bool isLeverEngaged)
     {
         if (isLeverEngaged)
         {
-            if (_powerSwitch.IsActivated)
+            if (_powerSwitch.IsSwitchedOn)
             {
-                _engagedLight.gameObject.SetActive(true);
-                StartShock();
+                if (_outputSwitch.IsActivated) StartShock();
+                else ComputerScreen.Instance.NoOutputText();
             }
             else ComputerScreen.Instance.UnpoweredText();
         }
-        else _engagedLight.gameObject.SetActive(false);
+        //else _engagedLight.gameObject.SetActive(false);
     }
 
     private void StartShock()
@@ -55,18 +61,25 @@ public class ControlPanel : MonoBehaviour
     private IEnumerator ShockCoroutine()
     {
         _leverAutoReturn.IsActive = false;
-        _engageLever.GetComponent<Draggable>().IsSelectable = false;
         PersonManager.Instance.ShockPerson(GetCurrentLevel());
+        SetSelectable(false);
         yield return new WaitForSeconds(_shockDuration);
-        _switchAutoReturn.IsActive = true;
-        _switchAutoComplete.IsActive = false;
+        _outputSwitchAutoreturn.IsActive = true;
         yield return new WaitForSeconds(0.3f);
-        _switchAutoComplete.IsActive = true;
-        _engageLever.GetComponent<Draggable>().IsSelectable = true;
-        _switchAutoReturn.IsActive = false;
+        _outputSwitchAutoreturn.IsActive = false;
         _leverAutoReturn.IsActive = true;
+        _powerSwitch.ToggleSwitch();
         yield return new WaitForSeconds(0.2f);
         PersonManager.Instance.RemovePerson();
+        SetSelectable(true);
+    }
+
+    private void SetSelectable(bool isSelectable)
+    {
+        _powerSwitch.IsSelectable = isSelectable;
+        _currentDialDraggable.IsSelectable = isSelectable;
+        _engageDialDraggable.IsSelectable = isSelectable;
+        _outputSwitchDraggable.IsSelectable = isSelectable;
     }
 
     private CurrentLevel GetCurrentLevel()

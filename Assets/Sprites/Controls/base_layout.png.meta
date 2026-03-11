@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f76ec0ae586c0094585725754c68d511
+guid: 4134091f698786b4c85e28a55417a399
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1750746932061477960
-    second: Screenshot 2026-03-08 220339_0
+      213: -3491685616456714648
+    second: base_layout_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 36
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Screenshot 2026-03-08 220339_0
+      name: base_layout_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 460
-        height: 488
+        width: 199
+        height: 112
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b3eedee0f814b7e0800000000000000
-      internalID: -1750746932061477960
+      spriteID: 866b1cb7e6a0b8fc0800000000000000
+      internalID: -3491685616456714648
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Screenshot 2026-03-08 220339_0: -1750746932061477960
+      base_layout_0: -3491685616456714648
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

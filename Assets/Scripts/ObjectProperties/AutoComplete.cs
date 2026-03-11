@@ -7,18 +7,20 @@ public class AutoComplete : MonoBehaviour
     private Draggable _draggable;
     private Rigidbody2D _rb;
     [HideInInspector] public bool IsActive;
+    private AutoReturn _autoReturn;
 
     private void Awake()
     {
         _positionActivation = GetComponent<PositionActivation>();
         _draggable = GetComponent<Draggable>();
         _rb = GetComponent<Rigidbody2D>();
+        _autoReturn = GetComponent<AutoReturn>();
         IsActive = true;
     }
 
     private void FixedUpdate()
     {
-        if (!IsActive) return;
+        if (!IsActive || _autoReturn.IsActive) return;
         int direction = _positionActivation.IsActivated ? 1 : -1;
         if (!_draggable.IsSelected)
         {

@@ -7,7 +7,6 @@ public class PositionActivation : MonoBehaviour
     [SerializeField] private ActivationType _activationType;
     [SerializeField] private PositionCheck _positionCheck;
     [SerializeField] private float _threshold;
-    [SerializeField] private GameObject _target;
 
     public bool IsActivated;
     public float Magnitude;
@@ -18,7 +17,6 @@ public class PositionActivation : MonoBehaviour
     private float _initialValue;
     private float _currentValue;
     private HingeJoint2D _hingeJoint;
-    private Slider _slider;
     private Image _image;
     private float _range = 1f;
 
@@ -38,22 +36,6 @@ public class PositionActivation : MonoBehaviour
             _range = transform.lossyScale.y;
         }
 
-        if (_activationType == ActivationType.Continuous)
-        {
-            _slider = _target.GetComponent<Slider>();
-            if (_slider == null)
-            {
-                Debug.LogError("Target GameObject must have a Slider component for Continuous activation.");
-            }
-        }
-        else if (_activationType == ActivationType.Discrete)
-        {
-            _image = _target.GetComponent<Image>();
-            if (_image == null)
-            {
-                Debug.LogError("Target GameObject must have an Image component for Discrete activation.");
-            }
-        }
     }
 
     private void Start()

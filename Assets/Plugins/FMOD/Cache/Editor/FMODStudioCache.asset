@@ -384,7 +384,7 @@ MonoBehaviour:
   Path: Assets/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639086859672020040
+  lastModified: 639086752439774097
   FileSizes: []
   Exists: 1
 --- !u!114 &-1783511172888358267
@@ -512,7 +512,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 568237888837867035}
   cacheVersion: 131858
-  cacheTime: 639086859672035166
+  cacheTime: 639086752439875496
   SerializableEventsDict:
   - key: event:/SFX/Chair/Shock
     index: 0
@@ -599,7 +599,7 @@ MonoBehaviour:
   Path: Assets/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639086859672035166
+  lastModified: 639086752439875496
   FileSizes:
   - Name: 
     Value: 2250

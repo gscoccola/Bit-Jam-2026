@@ -8,6 +8,7 @@ public class ComputerScreen : Singleton<ComputerScreen>
     private Dictionary<CurrentLevel, RandomText> _postShockTexts;
     private RandomText _preShockTexts;
     private RandomText _unpoweredTexts;
+    private RandomText _noOutputTexts;
 
     private void Start()
     {
@@ -31,6 +32,13 @@ public class ComputerScreen : Singleton<ComputerScreen>
             "Switch on the power first!",
             "Pull the power switch...",
         });
+
+        _noOutputTexts = new RandomText(new string[]
+        {
+            "No Output",
+            "Switch on the output",
+            "Pull the output switch...",
+        });
     }
 
     public void PostShockText(CurrentLevel currentLevel)
@@ -46,6 +54,11 @@ public class ComputerScreen : Singleton<ComputerScreen>
     public void UnpoweredText()
     {
         _text.text = _unpoweredTexts.GetText();
+    }
+
+    internal void NoOutputText()
+    {
+        _text.text = _noOutputTexts.GetText();
     }
 }
 

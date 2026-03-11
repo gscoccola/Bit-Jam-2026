@@ -7,13 +7,14 @@ public class AutoReturn : MonoBehaviour
 
     private Draggable _draggable;
     private Rigidbody2D _rb;
-    [HideInInspector] public bool IsActive;
+    public bool IsActive;
 
     private void Awake()
     {
         _draggable = GetComponent<Draggable>();
         _rb = GetComponent<Rigidbody2D>();
         IsActive = _startsActive;
+
     }
 
     private void FixedUpdate()
