@@ -13,6 +13,7 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     private SpriteRenderer _interiorPage;
     public bool IsDisabled;
     private BoxCollider2D _backCollider;
+    private string _animName;
 
     private void Awake()
     {
@@ -27,17 +28,16 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         if (!IsDisabled) return;
 
         AnimatorStateInfo stateInfo = _state == BookState.Turning ? _pageAnim.GetCurrentAnimatorStateInfo(0): _bookAnim.GetCurrentAnimatorStateInfo(0);
-        if (stateInfo.normalizedTime >= 1.0f)
+        if (stateInfo.IsName(_animName) &&  stateInfo.normalizedTime >= 0.9f)
         {
             OnAnimationComplete();
-            Debug.Log("Animation complete");
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         
-        OnClick();
+        GoForward();
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -45,29 +45,18 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         
     }
 
-    private void OnClick()
+    private void GoForward()
     {
         if (IsDisabled) return;
-
         IsDisabled = true;
 
-        if (_state == BookState.Closed)
-        {
-            _state = BookState.Opened;
-            _bookAnim.SetTrigger("Toggle");
-            _interiorPage.sprite = _interiorSprites[0];
-        }
-        else if (_pageIndex == _pageCount - 1)
-        {
-            _pageIndex = 0;
-            _state = BookState.Closed;
-            _bookAnim.SetTrigger("Toggle");
-            _backCollider.enabled = false;
-        }
+        if (_state == BookState.Closed) Open();
+        else if (_pageIndex == _pageCount - 1) Close();
         else
         {
             _state = BookState.Turning;
-            _pageAnim.SetTrigger("NextPage");
+            _pageAnim.Play("NextPage", 0, 0f);
+            _animName = "NextPage";
             _pageIndex++;
             _interiorPage.sprite = _interiorSprites[_pageIndex];
         }
@@ -78,29 +67,42 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         if (IsDisabled) return;
 
         IsDisabled = true;
-        if (_pageIndex == 0)
-        {
-            _pageIndex = 0;
-            _state = BookState.Closed;
-            _bookAnim.SetTrigger("Toggle");
-            _backCollider.enabled = false;
-        }
+        if (_pageIndex == 0) Close();
         else
         {
             _state = BookState.Turning;
-            _pageAnim.SetTrigger("PreviousPage");
+            _pageAnim.Play("PreviousPage", 0, 0f);
+            _animName = "PreviousPage";
             _pageIndex--;
         }
     }
+
+
+    private void Open()
+    {
+        _state = BookState.Opened;
+        _pageIndex = 0;
+        _bookAnim.Play("BookOpen", 0, 0f);
+        _animName = "BookOpen";
+        //_bookAnim.ResetTrigger("Toggle");
+        _backCollider.enabled = true;
+        _interiorPage.sprite = _interiorSprites[0];
+    }
+
+    private void Close()
+    {
+        _state = BookState.Closed;
+        _bookAnim.Play("BookClose", 0, 0f);
+        _animName = "BookClose";
+        //_bookAnim.ResetTrigger("Toggle");
+        _backCollider.enabled = false;
+    }
+
 
     public void OnAnimationComplete()
     {
         IsDisabled = false;
         _interiorPage.sprite = _interiorSprites[_pageIndex];
-        if (_state == BookState.Opened)
-        {
-            _backCollider.enabled = true;
-        }
         if (_state == BookState.Turning)
         {
             _state = BookState.Opened;
