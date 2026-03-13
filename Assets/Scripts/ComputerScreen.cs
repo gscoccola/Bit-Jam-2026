@@ -4,14 +4,23 @@ using System.Collections.Generic;
 
 public class ComputerScreen : Singleton<ComputerScreen>
 {
-    [SerializeField] private TextMeshProUGUI _text;
+    private TextMeshProUGUI _channelText;
+    private TextMeshProUGUI _infoText;
     private Dictionary<CurrentLevel, RandomText> _postShockTexts;
     private RandomText _preShockTexts;
     private RandomText _unpoweredTexts;
     private RandomText _noOutputTexts;
+    private GameObject _infoTab;
+    private GameObject _channelTab;
 
     private void Start()
     {
+        _channelTab = transform.GetChild(0).gameObject;
+        _channelText = _channelTab.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+
+        _infoTab = transform.GetChild(1).gameObject;
+        _infoText = _infoTab.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+
         _postShockTexts = new Dictionary<CurrentLevel, RandomText>
         {
             { CurrentLevel.Safe, new RandomText( new[]{"Mhh... Suspicious", "What Happened?"}) },
@@ -39,26 +48,47 @@ public class ComputerScreen : Singleton<ComputerScreen>
             "Switch on the output",
             "Pull the output switch...",
         });
+
+        DisplayInfo();
+
     }
 
     public void PostShockText(CurrentLevel currentLevel)
     {
-        _text.text = _postShockTexts[currentLevel].GetText();
+        DisplayMessage(_postShockTexts[currentLevel].GetText());
     }
 
     public void PreShockText()
     {
-        _text.text = _preShockTexts.GetText();
+        DisplayMessage(_preShockTexts.GetText());
     }
 
     public void UnpoweredText()
     {
-        _text.text = _unpoweredTexts.GetText();
+        DisplayMessage(_unpoweredTexts.GetText());
     }
 
-    internal void NoOutputText()
+    public void NoOutputText()
     {
-        _text.text = _noOutputTexts.GetText();
+        DisplayMessage(_noOutputTexts.GetText());
+    }
+
+    private void DisplayMessage(string message)
+    {
+        _channelTab.SetActive(true);
+        _infoTab.SetActive(false);
+        _channelText.text = message;
+    }
+
+    public void DisplayInfo()
+    {
+        _channelTab.SetActive(false);
+        _infoTab.SetActive(true);
+    }
+    public void DisplayChannel()
+    {
+        _channelTab.SetActive(true);
+        _infoTab.SetActive(false);
     }
 }
 

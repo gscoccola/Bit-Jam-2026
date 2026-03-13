@@ -6,6 +6,7 @@ public class PersonManager : Singleton<PersonManager>
 {
     [SerializeField] private Person _personPrefab;
     [SerializeField] private float _lenght;
+    [SerializeField]  private Animator _windowAnimator;
 
     [HideInInspector]  public Person CurrentPerson;
 
@@ -16,6 +17,7 @@ public class PersonManager : Singleton<PersonManager>
 
     private void SpawnPerson()
     {
+        _windowAnimator.Play("Open");
         CurrentPerson = Instantiate(_personPrefab, transform.position - _lenght * Vector3.right, Quaternion.identity, transform);
         CurrentPerson.transform.DOMove(transform.position, 2f).OnComplete(() => ComputerScreen.Instance.PreShockText());
     }
@@ -33,6 +35,7 @@ public class PersonManager : Singleton<PersonManager>
 
     private IEnumerator RemovePersonCoroutine()
     {
+        _windowAnimator.Play("Close");
         CurrentPerson.transform.DOMove(transform.position + _lenght * Vector3.right, 2f);
         yield return new WaitForSeconds(2.8f);
         
