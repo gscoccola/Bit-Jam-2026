@@ -1,9 +1,14 @@
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
     [SerializeField] private Sprite[] _interiorSprites;
+
+    [Header("SFX")]
+    [SerializeField] private StudioEventEmitter _openSound;
+    [SerializeField] private StudioEventEmitter _pageTurnSound;
 
     private Animator _bookAnim;
     private Animator _pageAnim;
@@ -54,6 +59,7 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         else if (_pageIndex == _pageCount - 1) Close();
         else
         {
+            _pageTurnSound.Play();
             _state = BookState.Turning;
             _pageAnim.Play("NextPage", 0, 0f);
             _animName = "NextPage";
@@ -70,6 +76,7 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         if (_pageIndex == 0) Close();
         else
         {
+            _pageTurnSound.Play();
             _state = BookState.Turning;
             _pageAnim.Play("PreviousPage", 0, 0f);
             _animName = "PreviousPage";
@@ -80,6 +87,7 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     private void Open()
     {
+        _openSound.Play();
         _state = BookState.Opened;
         _pageIndex = 0;
         _bookAnim.Play("BookOpen", 0, 0f);
@@ -91,6 +99,7 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     private void Close()
     {
+        _openSound.Play();
         _state = BookState.Closed;
         _bookAnim.Play("BookClose", 0, 0f);
         _animName = "BookClose";

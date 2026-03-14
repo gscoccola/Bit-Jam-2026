@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 01689dff7aad05c43993ad7b06930212
+guid: 4ba46ae01adef7444b15bb5fd2122a33
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -2413806693520163455
-    second: Circle
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 256
+  spritePixelsToUnits: 36
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -139,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dial_0
+      name: Screenshot 2026-03-14 032046_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 254
-        height: 255
+        x: 0
+        y: 0
+        width: 701
+        height: 408
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +151,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1af71763766fef4592e1ff8e7f8c8d9
-      internalID: -251930609
+      spriteID: b913c57a6b286c0458ef4403aa674bbc
+      internalID: -2140571078
       vertices: []
       indices: 
       edges: []
@@ -208,7 +205,7 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Dial_0: -251930609
+      Screenshot 2026-03-14 032046_0: -2140571078
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

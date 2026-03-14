@@ -2,10 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ControlPanel : MonoBehaviour
+public class ControlPanel : Singleton<ControlPanel>
 {
     [Header("Parameters")]
-    [SerializeField] private float _shockDuration = 2f;
     [SerializeField] private float _currentInjuryThreshold = 0.3f;
     [SerializeField] private float _currentLethalThreshold = 0.6f;
 
@@ -27,8 +26,9 @@ public class ControlPanel : MonoBehaviour
     private Draggable _engageDialDraggable;
     private Draggable _outputSwitchDraggable;
     private AutoReturn _outputSwitchAutoreturn;
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _currentDial.ValueChanged.AddListener(value => _currentSlider.value = value);
         _engageLever.Activated.AddListener(TryEngageChair);
         _outputSwitch.Activated.AddListener(isOn => _outputIndicator.sprite = isOn ? _outputIndicatorSprites[1] : _outputIndicatorSprites[0]);
@@ -55,26 +55,27 @@ public class ControlPanel : MonoBehaviour
 
     private void StartShock()
     {
-        StartCoroutine(ShockCoroutine());
+        _leverAutoReturn.IsActive = false;
+        CurrentLevel currentLevel = GetCurrentLevel();
+        PersonManager.Instance.StartShock(currentLevel, _currentDial.Magnitude);
+        SetSelectable(false);
     }
 
-    private IEnumerator ShockCoroutine()
+    public void StartWindown()
     {
-        _leverAutoReturn.IsActive = false;
-        PersonManager.Instance.ShockPerson(GetCurrentLevel());
-        SetSelectable(false);
-        yield return new WaitForSeconds(_shockDuration);
+        StartCoroutine(WindownCoroutine());
+    }
+
+    private IEnumerator WindownCoroutine()
+    {
         _outputSwitchAutoreturn.IsActive = true;
         yield return new WaitForSeconds(0.3f);
         _outputSwitchAutoreturn.IsActive = false;
         _leverAutoReturn.IsActive = true;
         _powerSwitch.ToggleSwitch();
-        yield return new WaitForSeconds(0.2f);
-        PersonManager.Instance.RemovePerson();
-        SetSelectable(true);
     }
 
-    private void SetSelectable(bool isSelectable)
+    public void SetSelectable(bool isSelectable)
     {
         _powerSwitch.IsSelectable = isSelectable;
         _currentDialDraggable.IsSelectable = isSelectable;

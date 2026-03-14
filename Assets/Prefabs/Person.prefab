@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9006284626544391523}
   - component: {fileID: 8073241947695808667}
   - component: {fileID: 6440457803042636508}
+  - component: {fileID: 1647110313517851766}
   m_Layer: 0
   m_Name: Person
   m_TagString: Untagged
@@ -94,7 +95,7 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 7
   m_MaskInteraction: 1
-  m_Sprite: {fileID: -251930609, guid: 1bb634796a90bb94b93282dccdcb1ab8, type: 3}
+  m_Sprite: {fileID: 88750577, guid: 10e4e8c45fe32fa43ac920ffd92de385, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,3 +105,25 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &1647110313517851766
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4353940455583056190}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 751a20859ce0f834a8d4ffebebe9aa83, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

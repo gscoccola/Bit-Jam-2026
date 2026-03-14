@@ -11,7 +11,7 @@ public class Person : MonoBehaviour
 
     public void Shock(CurrentLevel level)
     {
-        switch (level)
+        /*switch (level)
         {
             case CurrentLevel.Safe:
                 
@@ -22,6 +22,6 @@ public class Person : MonoBehaviour
             case CurrentLevel.Lethal:
                 _spriteRenderer.color = Color.red;
                 break;
-        }
+        }*/
     }
 }
