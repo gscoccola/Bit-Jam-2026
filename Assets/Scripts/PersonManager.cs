@@ -4,11 +4,11 @@ using FMODUnity;
 
 public class PersonManager : Singleton<PersonManager>
 {
-    [SerializeField] private Person _personPrefab;
+    [SerializeField] private GameObject _personPrefab;
     [SerializeField]  private Animator _windowAnimator;
     [SerializeField] private float _shockDuration = 2f;
 
-    [HideInInspector]  public Person CurrentPerson;
+    [HideInInspector]  public GameObject CurrentPerson;
 
     
     private Animator _personAnimator;
@@ -18,6 +18,7 @@ public class PersonManager : Singleton<PersonManager>
     [SerializeField] private StudioEventEmitter _chargeSound;
     [SerializeField] private StudioEventEmitter _shockSound;
     [SerializeField] private StudioEventEmitter _activationSound;
+    [SerializeField] private StudioEventEmitter _shutterSound;
 
     private void Start()
     {
@@ -32,9 +33,11 @@ public class PersonManager : Singleton<PersonManager>
     private IEnumerator IPersonSpawn()
     {
         _windowAnimator.Play("Open");
+        _shutterSound.Play();
         CurrentPerson = Instantiate(_personPrefab, transform.position, Quaternion.identity, transform);
         _personAnimator = CurrentPerson.GetComponent<Animator>();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
+        //_shutterSound.Stop();
         ComputerScreen.Instance.PreShockText();
         ControlPanel.Instance.SetSelectable(true);
     }
@@ -69,8 +72,9 @@ public class PersonManager : Singleton<PersonManager>
         yield return new WaitForSeconds(2.8f);
 
         _windowAnimator.Play("Close");
+        _shutterSound.Play();
 
-        yield return new WaitForSeconds(2.8f);
+        yield return new WaitForSeconds(6f);
 
         Destroy(CurrentPerson.gameObject);
         SpawnPerson();

@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,11 @@ public class ControlPanel : Singleton<ControlPanel>
     [SerializeField] private Sprite[] _outputIndicatorSprites;
     [SerializeField] private SpriteRenderer _outputIndicator;
 
+    [Header("SFX")]
+    //[SerializeField] private StudioEventEmitter _currentDialSound;
+    [SerializeField] private StudioEventEmitter _outputSwitchSound;
+    [SerializeField] private StudioEventEmitter _leverSound;
+
     private AutoReturn _leverAutoReturn;
     private Draggable _currentDialDraggable;
     private Draggable _engageDialDraggable;
@@ -31,7 +37,9 @@ public class ControlPanel : Singleton<ControlPanel>
         base.Awake();
         _currentDial.ValueChanged.AddListener(value => _currentSlider.value = value);
         _engageLever.Activated.AddListener(TryEngageChair);
-        _outputSwitch.Activated.AddListener(isOn => _outputIndicator.sprite = isOn ? _outputIndicatorSprites[1] : _outputIndicatorSprites[0]);
+        _outputSwitch.Activated.AddListener(isOn => 
+            { _outputIndicator.sprite = isOn ? _outputIndicatorSprites[1] : _outputIndicatorSprites[0];
+                _outputSwitchSound.Play(); });
         _leverAutoReturn = _engageLever.GetComponent<AutoReturn>();
         _currentDialDraggable = _currentDial.GetComponent<Draggable>();
         _engageDialDraggable = _engageLever.GetComponent<Draggable>();
@@ -43,6 +51,7 @@ public class ControlPanel : Singleton<ControlPanel>
     {
         if (isLeverEngaged)
         {
+            _leverSound.Play();
             if (_powerSwitch.IsSwitchedOn)
             {
                 if (_outputSwitch.IsActivated) StartShock();

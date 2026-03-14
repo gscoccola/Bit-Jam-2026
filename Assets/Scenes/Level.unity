@@ -818,6 +818,8 @@ GameObject:
   m_Component:
   - component: {fileID: 326884804}
   - component: {fileID: 326884803}
+  - component: {fileID: 326884806}
+  - component: {fileID: 326884805}
   m_Layer: 0
   m_Name: ComputerMonitor
   m_TagString: Untagged
@@ -837,6 +839,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650d9b9a41d96014fbc9c420bd870bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ComputerScreen
+  _notificationSound: {fileID: 326884806}
+  _tabSound: {fileID: 326884805}
 --- !u!4 &326884804
 Transform:
   m_ObjectHideFlags: 0
@@ -855,6 +859,68 @@ Transform:
   - {fileID: 1477294315}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &326884805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326884801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1645325395
+      Data2: 1300658700
+      Data3: -1388192329
+      Data4: -1080274178
+    Path: event:/SFX/Buttons/ComputerTexture
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &326884806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326884801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1558629492
+      Data2: 1302827411
+      Data3: -529524342
+      Data4: -161140543
+    Path: event:/SFX/Buttons/ComputerNotification
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &388616866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,8 +1231,8 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
-  - component: {fileID: 519420035}
   - component: {fileID: 519420036}
+  - component: {fileID: 519420037}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1253,9 +1319,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.125
     y: 0
-    width: 1
+    width: 0.75
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -1322,37 +1388,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioListener
   nonRigidbodyVelocity: 0
   attenuationObject: {fileID: 0}
---- !u!114 &519420035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -995456972
-      Data2: 1171695990
-      Data3: -35316329
-      Data4: 7924455
-    Path: event:/Menu/MenuClick
-  Event: 
-  EventPlayTrigger: 1
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1369,7 +1404,7 @@ MonoBehaviour:
   m_AssetsPPU: 36
   m_RefResolutionX: 640
   m_RefResolutionY: 360
-  m_CropFrame: 0
+  m_CropFrame: 1
   m_GridSnapping: 1
   m_FilterMode: 0
   m_UpscaleRT: 0
@@ -1377,6 +1412,37 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!114 &519420037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1569424839
+      Data2: 1146236123
+      Data3: 1080587166
+      Data4: 783835935
+    Path: event:/Music/Music
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,6 +2050,7 @@ GameObject:
   - component: {fileID: 945340339}
   - component: {fileID: 945340340}
   - component: {fileID: 945340341}
+  - component: {fileID: 945340342}
   m_Layer: 0
   m_Name: PersonManager
   m_TagString: Untagged
@@ -2003,13 +2070,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322ed67243b375e48aff71a4eee247c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PersonManager
-  _personPrefab: {fileID: 8073241947695808667, guid: 16da9d198487b4f4c8ff88f57ea26f8d, type: 3}
+  _personPrefab: {fileID: 4353940455583056190, guid: 16da9d198487b4f4c8ff88f57ea26f8d, type: 3}
   _windowAnimator: {fileID: 388616868}
   _shockDuration: 3.5
   CurrentPerson: {fileID: 0}
   _chargeSound: {fileID: 945340339}
   _shockSound: {fileID: 945340340}
   _activationSound: {fileID: 945340341}
+  _shutterSound: {fileID: 945340342}
 --- !u!4 &945340338
 Transform:
   m_ObjectHideFlags: 0
@@ -2109,6 +2177,37 @@ MonoBehaviour:
       Data3: -666562668
       Data4: -455382477
     Path: event:/SFX/Chair/ChairActivate
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &945340342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945340336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1156747840
+      Data2: 1309051153
+      Data3: 1529987212
+      Data4: 893452228
+    Path: event:/SFX/Chair/MachineMove
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -2947,6 +3046,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1144142889}
   - component: {fileID: 1144142890}
+  - component: {fileID: 1144142892}
+  - component: {fileID: 1144142891}
   m_Layer: 0
   m_Name: ControlPanel
   m_TagString: Untagged
@@ -2998,6 +3099,70 @@ MonoBehaviour:
   - {fileID: 1949136971, guid: 6ddddfc2adbf71948a79bdb0381b2fff, type: 3}
   - {fileID: -141540834, guid: 6ddddfc2adbf71948a79bdb0381b2fff, type: 3}
   _outputIndicator: {fileID: 444885579}
+  _outputSwitchSound: {fileID: 1144142892}
+  _leverSound: {fileID: 1144142891}
+--- !u!114 &1144142891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144142888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 101138137
+      Data2: 1303539251
+      Data3: -1227733849
+      Data4: 1099459746
+    Path: event:/SFX/Buttons/SmallBreakerSwitch
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1144142892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144142888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 551945642
+      Data2: 1132829305
+      Data3: -819103317
+      Data4: -513511930
+    Path: event:/SFX/Buttons/Button
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1151496906
 GameObject:
   m_ObjectHideFlags: 0
@@ -4390,6 +4555,8 @@ GameObject:
   - component: {fileID: 1633219171}
   - component: {fileID: 1633219169}
   - component: {fileID: 1633219170}
+  - component: {fileID: 1633219173}
+  - component: {fileID: 1633219172}
   m_Layer: 0
   m_Name: PowerSwitch
   m_TagString: Untagged
@@ -4539,6 +4706,70 @@ MonoBehaviour:
   - {fileID: -6417934270790139669, guid: 749bda7e9e888b0408569537960beb9f, type: 3}
   - {fileID: 9053026426965241982, guid: 749bda7e9e888b0408569537960beb9f, type: 3}
   _switchTime: 0.15
+  _powerOnSound: {fileID: 1633219173}
+  _powerOffSound: {fileID: 1633219172}
+--- !u!114 &1633219172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633219167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 101138137
+      Data2: 1303539251
+      Data3: -1227733849
+      Data4: 1099459746
+    Path: event:/SFX/Buttons/SmallBreakerSwitch
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1633219173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633219167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1555554162
+      Data2: 1117123775
+      Data3: 480875182
+      Data4: 1380696924
+    Path: event:/SFX/Buttons/BigBreakerSwitch
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1643096012
 GameObject:
   m_ObjectHideFlags: 0
@@ -5367,7 +5598,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -5.637778, y: 2.3722222}
+  m_AnchoredPosition: {x: -5.47, y: 2.3722222}
   m_SizeDelta: {x: 0.59, y: 2.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1957517858
@@ -5400,7 +5631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 1
+  m_ReferencePixelsPerUnit: 36
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
@@ -5530,14 +5761,14 @@ MonoBehaviour:
       - m_Target: {fileID: 326884803}
         m_TargetAssemblyTypeName: ComputerScreen, Assembly-CSharp
         m_MethodName: DisplayInfo
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &2017118995
 GameObject:
@@ -5603,7 +5834,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -10945637
   m_SortingLayer: -1
-  m_SortingOrder: 10
+  m_SortingOrder: 12
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3022269416162959646, guid: 39933deb17d0495419d4a39ecf361149, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

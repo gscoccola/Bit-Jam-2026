@@ -1,6 +1,7 @@
-using UnityEngine;
-using TMPro;
+using FMODUnity;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 
 public class ComputerScreen : Singleton<ComputerScreen>
 {
@@ -12,6 +13,10 @@ public class ComputerScreen : Singleton<ComputerScreen>
     private RandomText _noOutputTexts;
     private GameObject _infoTab;
     private GameObject _channelTab;
+
+    [Header("SFX")]
+    [SerializeField] private StudioEventEmitter _notificationSound;
+    [SerializeField] private StudioEventEmitter _tabSound;
 
     private void Start()
     {
@@ -49,7 +54,7 @@ public class ComputerScreen : Singleton<ComputerScreen>
             "Pull the output switch...",
         });
 
-        DisplayInfo();
+        DisplayInfo(false);
 
     }
 
@@ -75,18 +80,21 @@ public class ComputerScreen : Singleton<ComputerScreen>
 
     private void DisplayMessage(string message)
     {
+        _notificationSound.Play();
         _channelTab.SetActive(true);
         _infoTab.SetActive(false);
         _channelText.text = message;
     }
 
-    public void DisplayInfo()
+    public void DisplayInfo(bool playSound = true)
     {
+        if (playSound) _tabSound.Play();
         _channelTab.SetActive(false);
         _infoTab.SetActive(true);
     }
     public void DisplayChannel()
     {
+        _tabSound.Play();
         _channelTab.SetActive(true);
         _infoTab.SetActive(false);
     }

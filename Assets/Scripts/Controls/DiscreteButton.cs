@@ -1,3 +1,4 @@
+using FMODUnity;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -14,7 +15,14 @@ public class DiscreteButton : MonoBehaviour, IPointerDownHandler
 
     [SerializeField] private Sprite[] _sprites;
     [SerializeField] private float _switchTime = 0.15f;
+
+    [Header("SFX")]
+    [SerializeField] private StudioEventEmitter _powerOnSound;
+    [SerializeField] private StudioEventEmitter _powerOffSound;
+
+
     private SpriteRenderer _spriteRenderer;
+    private bool _isSwitching;
 
     private void Awake()
     {
@@ -23,7 +31,7 @@ public class DiscreteButton : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!IsSelectable) return;
+        if (!IsSelectable || _isSwitching) return;
         ToggleSwitch();
     }
 
@@ -34,10 +42,11 @@ public class DiscreteButton : MonoBehaviour, IPointerDownHandler
 
     public IEnumerator SwitchCoroutine()
     {
-        IsSelectable = false;
+        _isSwitching = true;
         _spriteRenderer.sprite = _sprites[1];
+        if (!IsSwitchedOn) _powerOnSound.Play(); else _powerOffSound.Play();
         yield return new WaitForSeconds(_switchTime);
-        IsSelectable = true;
+        _isSwitching = false;
         Switch(!IsSwitchedOn);
     }
 
