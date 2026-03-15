@@ -17,13 +17,6 @@ public class MainMenu : MonoBehaviour
     {
         mainMenuPanel.SetActive(true);
         creditsPanel.SetActive(false);
-        StartCoroutine(IMusicStart());
-    }
-
-    private IEnumerator IMusicStart()
-    {
-        _menuClick.Play();
-        yield return new WaitForSecondsRealtime(1.5f);
         _BGM.Play();
     }
 

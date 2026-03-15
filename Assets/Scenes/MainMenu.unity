@@ -540,10 +540,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.125
-    y: 0
-    width: 0.75
-    height: 1
+    x: 0.22173913
+    y: 0.11015119
+    width: 0.5565218
+    height: 0.77753776
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_AssetsPPU: 36
   m_RefResolutionX: 320
   m_RefResolutionY: 180
-  m_CropFrame: 1
+  m_CropFrame: 3
   m_GridSnapping: 1
   m_FilterMode: 0
   m_UpscaleRT: 0
@@ -1076,9 +1076,9 @@ GameObject:
   - component: {fileID: 944148416}
   - component: {fileID: 944148414}
   - component: {fileID: 944148413}
+  - component: {fileID: 944148417}
   - component: {fileID: 944148412}
   - component: {fileID: 944148418}
-  - component: {fileID: 944148417}
   - component: {fileID: 944148419}
   m_Layer: 5
   m_Name: Canvas

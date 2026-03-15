@@ -18,7 +18,9 @@ public class PersonManager : Singleton<PersonManager>
     [SerializeField] private StudioEventEmitter _chargeSound;
     [SerializeField] private StudioEventEmitter _shockSound;
     [SerializeField] private StudioEventEmitter _activationSound;
-    [SerializeField] private StudioEventEmitter _shutterSound;
+    [SerializeField] private StudioEventEmitter _shutterOpen;
+    [SerializeField] private StudioEventEmitter _shutterClose;
+    [SerializeField] private StudioEventEmitter _BGM;
 
     private void Start()
     {
@@ -33,7 +35,7 @@ public class PersonManager : Singleton<PersonManager>
     private IEnumerator IPersonSpawn()
     {
         _windowAnimator.Play("Open");
-        _shutterSound.Play();
+        _shutterOpen.Play();
         CurrentPerson = Instantiate(_personPrefab, transform.position, Quaternion.identity, transform);
         _personAnimator = CurrentPerson.GetComponent<Animator>();
         yield return new WaitForSeconds(3f);
@@ -56,6 +58,7 @@ public class PersonManager : Singleton<PersonManager>
         _shockSound.Play(); 
         _chargeSound.SetParameter("ChargeLevel", magnitude * 100f);
         _personAnimator.Play("Criminal_Shock");
+        _BGM.SetParameter("LowPass", 50f);
 
         yield return new WaitForSeconds(_shockDuration);
 
@@ -64,6 +67,7 @@ public class PersonManager : Singleton<PersonManager>
         yield return new WaitForSeconds(0.3f);
 
         StopShock(level);
+        _BGM.SetParameter("LowPass", 100f);
 
         yield return new WaitForSeconds(0.2f);
 
@@ -72,9 +76,13 @@ public class PersonManager : Singleton<PersonManager>
         yield return new WaitForSeconds(2.8f);
 
         _windowAnimator.Play("Close");
-        _shutterSound.Play();
+        _shutterClose.Play();
 
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(3f);
+
+        _shutterClose.Stop();
+
+        yield return new WaitForSeconds(3f);
 
         Destroy(CurrentPerson.gameObject);
         SpawnPerson();

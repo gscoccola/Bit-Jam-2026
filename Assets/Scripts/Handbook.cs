@@ -10,22 +10,33 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     [SerializeField] private StudioEventEmitter _openSound;
     [SerializeField] private StudioEventEmitter _pageTurnSound;
 
+    private GameObject _zoomedIn;
+    private GameObject _zoomedOut;
     private Animator _bookAnim;
     private Animator _pageAnim;
+    private SpriteRenderer _interiorPage;
+
+
     private int _pageIndex;
     private int _pageCount = 3;
     private BookState _state;
-    private SpriteRenderer _interiorPage;
     public bool IsDisabled;
-    private BoxCollider2D _backCollider;
     private string _animName;
+    //private bool _isZoomedIn;
 
     private void Awake()
     {
-        _bookAnim = GetComponent<Animator>();
-        _pageAnim = transform.GetChild(0).GetComponent<Animator>();
-        _interiorPage = transform.GetChild(1).GetComponent<SpriteRenderer>();
-        _backCollider = transform.GetChild(2).GetComponent<BoxCollider2D>();
+        _zoomedOut = transform.GetChild(0).gameObject;
+
+        _zoomedIn = transform.GetChild(1).gameObject;
+        _bookAnim = _zoomedIn.transform.GetChild(0).GetComponent<Animator>();
+        _pageAnim = _zoomedIn.transform.GetChild(1).GetComponent<Animator>();
+
+
+        _interiorPage = _zoomedIn.transform.GetChild(2).GetComponent<SpriteRenderer>();
+
+        _zoomedOut.SetActive(true);
+        _zoomedIn.SetActive(false);
     }
 
     void Update()
@@ -53,12 +64,13 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     private void GoForward()
     {
         if (IsDisabled) return;
-        IsDisabled = true;
 
         if (_state == BookState.Closed) Open();
         else if (_pageIndex == _pageCount - 1) Close();
+        
         else
         {
+            IsDisabled = true;
             _pageTurnSound.Play();
             _state = BookState.Turning;
             _pageAnim.Play("NextPage", 0, 0f);
@@ -72,10 +84,11 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
         if (IsDisabled) return;
 
-        IsDisabled = true;
         if (_pageIndex == 0) Close();
+        
         else
         {
+            IsDisabled = true;
             _pageTurnSound.Play();
             _state = BookState.Turning;
             _pageAnim.Play("PreviousPage", 0, 0f);
@@ -87,31 +100,54 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     private void Open()
     {
+        IsDisabled = true;
         _openSound.Play();
+        ToggleZoom();
         _state = BookState.Opened;
         _pageIndex = 0;
         _bookAnim.Play("BookOpen", 0, 0f);
         _animName = "BookOpen";
-        //_bookAnim.ResetTrigger("Toggle");
-        _backCollider.enabled = true;
         _interiorPage.sprite = _interiorSprites[0];
     }
 
-    private void Close()
+    public void Close()
     {
+        if (IsDisabled) return;
+
+        IsDisabled = true;
+
         _openSound.Play();
         _state = BookState.Closed;
         _bookAnim.Play("BookClose", 0, 0f);
         _animName = "BookClose";
-        //_bookAnim.ResetTrigger("Toggle");
-        _backCollider.enabled = false;
     }
 
+    private void ToggleZoom()
+    {
+        /*Vector3 translation = new Vector3(-1f, -2f, 0f);
+        if (_isZoomedIn)
+        {
+            transform.localScale = Vector2.one;
+            transform.position -= translation;
+        }
+        else
+        {
+            transform.localScale = Vector2.one * 2f;
+            transform.position += translation;
+        }
+        _isZoomedIn = !_isZoomedIn;*/
+        _zoomedOut.SetActive(!_zoomedOut.activeSelf);
+        _zoomedIn.SetActive(!_zoomedIn.activeSelf);
+    }
 
     public void OnAnimationComplete()
     {
         IsDisabled = false;
         _interiorPage.sprite = _interiorSprites[_pageIndex];
+        if (_state == BookState.Closed)
+        {
+            ToggleZoom();
+        }
         if (_state == BookState.Turning)
         {
             _state = BookState.Opened;

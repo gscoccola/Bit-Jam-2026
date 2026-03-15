@@ -102,6 +102,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 544
+--- !u!114 &-6458699306720209858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/LowPass
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: LowPass
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 100
+  ID:
+    data1: 3354698738
+    data2: 1246749011
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-6377150844751836389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,6 +366,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1250
+--- !u!114 &-2376208186606243494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/ShutterOpen
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/ShutterOpen
+  Guid:
+    Data1: 1929568815
+    Data2: 1240007653
+    Data3: -120580465
+    Data4: 1006051497
+  Banks:
+  - {fileID: -1793207679979111081}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3528
+--- !u!114 &-2264463029279207900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/ShutterClose
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/ShutterClose
+  Guid:
+    Data1: -1818823645
+    Data2: 1285079114
+    Data3: 1944933291
+    Data4: 935079114
+  Banks:
+  - {fileID: -1793207679979111081}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2568
 --- !u!114 &-1897407746659974272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,7 +462,7 @@ MonoBehaviour:
   Path: Assets/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639086752439774097
+  lastModified: 639091085000188114
   FileSizes: []
   Exists: 1
 --- !u!114 &-1783511172888358267
@@ -502,6 +580,10 @@ MonoBehaviour:
   - {fileID: -2727534562408464854}
   - {fileID: -3994708919439666206}
   - {fileID: -1783511172888358267}
+  - {fileID: 4517027464958611891}
+  - {fileID: -2264463029279207900}
+  - {fileID: -2376208186606243494}
+  - {fileID: 7612293892125365346}
   EditorParameters:
   - {fileID: 3072474209794575902}
   - {fileID: -7331469427764824385}
@@ -512,7 +594,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 568237888837867035}
   cacheVersion: 131858
-  cacheTime: 639086752439875496
+  cacheTime: 639091085000282712
   SerializableEventsDict:
   - key: event:/SFX/Chair/Shock
     index: 0
@@ -556,6 +638,14 @@ MonoBehaviour:
     index: 19
   - key: event:/Music/Main Menu
     index: 20
+  - key: event:/SFX/Footsteps
+    index: 21
+  - key: event:/SFX/ShutterClose
+    index: 22
+  - key: event:/SFX/ShutterOpen
+    index: 23
+  - key: event:/SFX/Buttons/ButtonStop
+    index: 24
 --- !u!114 &151454856753211478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,10 +689,10 @@ MonoBehaviour:
   Path: Assets/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639086752439875496
+  lastModified: 639091085000282712
   FileSizes:
   - Name: 
-    Value: 2250
+    Value: 2464
   Exists: 1
 --- !u!114 &2062549916488321136
 MonoBehaviour:
@@ -709,6 +799,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2609
+--- !u!114 &4517027464958611891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Footsteps
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/Footsteps
+  Guid:
+    Data1: -1045098213
+    Data2: 1133935884
+    Data3: 1261310867
+    Data4: 1679825632
+  Banks:
+  - {fileID: -1793207679979111081}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2627
 --- !u!114 &4721697094419363057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,6 +853,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3752
+--- !u!114 &7612293892125365346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Buttons/ButtonStop
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/Buttons/ButtonStop
+  Guid:
+    Data1: 851889885
+    Data2: 1120915970
+    Data3: -967017290
+    Data4: 819318870
+  Banks:
+  - {fileID: -1793207679979111081}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &8146369863839770822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -761,6 +905,7 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters:
   - {fileID: 9062770132608187801}
+  - {fileID: -6458699306720209858}
   MinDistance: 1
   MaxDistance: 20
   Length: 234000
