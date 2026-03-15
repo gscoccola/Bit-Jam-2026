@@ -2,29 +2,36 @@ using FMODUnity;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ComputerScreen : Singleton<ComputerScreen>
 {
     private TextMeshProUGUI _channelText;
-    private TextMeshProUGUI _infoText;
     private Dictionary<CurrentLevel, RandomText> _postShockTexts;
     private RandomText _preShockTexts;
     private RandomText _unpoweredTexts;
     private RandomText _noOutputTexts;
     private GameObject _infoTab;
     private GameObject _channelTab;
+    private RectTransform _infoRect;
+    private TypewriterEffect _typer;
 
     [Header("SFX")]
     [SerializeField] private StudioEventEmitter _notificationSound;
     [SerializeField] private StudioEventEmitter _tabSound;
 
+    [Header("PrisonerInfo")]
+    [SerializeField] private TextMeshProUGUI _infoText;
+    [SerializeField]  private ScrollRect _scrollView;
     private void Start()
     {
         _channelTab = transform.GetChild(0).gameObject;
         _channelText = _channelTab.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
 
         _infoTab = transform.GetChild(1).gameObject;
-        _infoText = _infoTab.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+        _infoRect = _infoText.transform.parent.GetComponent<RectTransform>();
+
+        _typer = GetComponent<TypewriterEffect>();
 
         _postShockTexts = new Dictionary<CurrentLevel, RandomText>
         {
@@ -55,7 +62,6 @@ public class ComputerScreen : Singleton<ComputerScreen>
         });
 
         DisplayInfo(false);
-
     }
 
     public void PostShockText(CurrentLevel currentLevel)
@@ -83,7 +89,8 @@ public class ComputerScreen : Singleton<ComputerScreen>
         _notificationSound.Play();
         _channelTab.SetActive(true);
         _infoTab.SetActive(false);
-        _channelText.text = message;
+        _typer.TypeText(_channelText, message);
+        //_channelText.text = message;
     }
 
     public void DisplayInfo(bool playSound = true)
@@ -97,6 +104,15 @@ public class ComputerScreen : Singleton<ComputerScreen>
         _tabSound.Play();
         _channelTab.SetActive(true);
         _infoTab.SetActive(false);
+    }
+
+    public void SetPrisonerInfo(PrisonerInfoSO info)
+    {
+        _infoText.text = info.Information + "\n\nCharges:\n" + string.Join("\n", info.Charges) + "\n\nSentence: " + info.Sentence.ToString();
+        //float width = _infoText.preferredWidth;
+        float height = _infoText.preferredHeight;
+        _infoRect.sizeDelta = new Vector2(_infoRect.sizeDelta.x, height);
+        _scrollView.verticalNormalizedPosition = 1f;
     }
 }
 

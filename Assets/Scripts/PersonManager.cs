@@ -9,8 +9,9 @@ public class PersonManager : Singleton<PersonManager>
     [SerializeField] private float _shockDuration = 2f;
 
     [HideInInspector]  public GameObject CurrentPerson;
+    [SerializeField] private PrisonerInfoSO[] _prisonerInfo;
 
-    
+    private int _prisonerIndex;
     private Animator _personAnimator;
 
 
@@ -30,6 +31,7 @@ public class PersonManager : Singleton<PersonManager>
     private void SpawnPerson()
     {
         StartCoroutine(IPersonSpawn());
+        ComputerScreen.Instance.SetPrisonerInfo(_prisonerInfo[_prisonerIndex]);
     }
 
     private IEnumerator IPersonSpawn()
@@ -84,6 +86,13 @@ public class PersonManager : Singleton<PersonManager>
 
         yield return new WaitForSeconds(3f);
 
+        GameManager.Instance.EvaluateAction(_prisonerInfo[_prisonerIndex], level);
+        _prisonerIndex++;
+        if (_prisonerIndex >= _prisonerInfo.Length)
+        {
+            GameManager.Instance.TriggerEnding();
+            yield break;
+        }
         Destroy(CurrentPerson.gameObject);
         SpawnPerson();
     }
