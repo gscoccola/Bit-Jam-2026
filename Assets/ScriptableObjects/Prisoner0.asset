@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cde44bfc0aa0143857994e8ea58536, type: 3}
+  m_Name: Prisoner0
+  m_EditorClassIdentifier: Assembly-CSharp::PrisonerInfoSO
+  Index: 0
+  Information: 'Prisoner murdered 4 other prisoners during an altercation after threats
+    where uttered. This happened in his cell pod after being moved out of the SHU
+    where he was staying due to littering. It was all caught in HD CCTV.
+
+
+'
+  Charges:
+  - Murder
+  - Littering
+  - Uttering Threats
+  Sentence: 2

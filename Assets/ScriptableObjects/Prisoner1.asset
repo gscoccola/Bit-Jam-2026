@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cde44bfc0aa0143857994e8ea58536, type: 3}
   m_Name: Prisoner1
   m_EditorClassIdentifier: Assembly-CSharp::PrisonerInfoSO
-  Information: At 4:06 AM PT prisoner was caught walking out of a local electronic
-    store with a handful of tablets, phones & other various goods without purchasing.
-    Prisoner proceeded to fender bender a civillians car in the process of fleeing.
+  Index: 10
+  Information: 'Prisoner was picked up from a troubling neighbourhood with a high
+    murder rate. The chief is looking to make an example out of him, and keep up
+    the "tough on crime" appearance. '
   Charges:
-  - Hit & Run
-  - Theft
-  Sentence: 1
+  - Murder
+  - Loitering
+  Sentence: 2

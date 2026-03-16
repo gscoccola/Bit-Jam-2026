@@ -15,6 +15,8 @@ public class ComputerScreen : Singleton<ComputerScreen>
     private GameObject _channelTab;
     private RectTransform _infoRect;
     private TypewriterEffect _typer;
+    private int _handPrintIndex;
+    [HideInInspector] public bool DisplaySuspicionMessage;
 
     [Header("SFX")]
     [SerializeField] private StudioEventEmitter _notificationSound;
@@ -23,6 +25,8 @@ public class ComputerScreen : Singleton<ComputerScreen>
     [Header("PrisonerInfo")]
     [SerializeField] private TextMeshProUGUI _infoText;
     [SerializeField]  private ScrollRect _scrollView;
+    [SerializeField]  private Sprite[] _handPrints;
+    [SerializeField]  private SpriteRenderer _handPrint;
     private void Start()
     {
         _channelTab = transform.GetChild(0).gameObject;
@@ -71,7 +75,14 @@ public class ComputerScreen : Singleton<ComputerScreen>
 
     public void PreShockText()
     {
-        DisplayMessage(_preShockTexts.GetText());
+        if (!DisplaySuspicionMessage) return;
+        DisplaySuspicionMessage = false;
+        string text = "";
+        if (GameManager.Instance.Suspicion == 1) text = "You won't like the consequences of messing this up";
+        else if (GameManager.Instance.Suspicion == 2) text = "THIS IS YOUR LAST WARNING, DON'T FUCK IT UP";
+        else if (GameManager.Instance.Suspicion == 3) return;
+
+        DisplayMessage(text);
     }
 
     public void UnpoweredText()
@@ -84,7 +95,7 @@ public class ComputerScreen : Singleton<ComputerScreen>
         DisplayMessage(_noOutputTexts.GetText());
     }
 
-    private void DisplayMessage(string message)
+    public void DisplayMessage(string message)
     {
         _notificationSound.Play();
         _channelTab.SetActive(true);
@@ -108,11 +119,20 @@ public class ComputerScreen : Singleton<ComputerScreen>
 
     public void SetPrisonerInfo(PrisonerInfoSO info)
     {
-        _infoText.text = info.Information + "\n\nCharges:\n" + string.Join("\n", info.Charges) + "\n\nSentence: " + info.Sentence.ToString();
+        _infoText.text = info.Information + "\n\nCharges:\n" + string.Join("\n", info.Charges) + "\n\nSentence: " + GetSentence(info.Sentence);
+        _handPrintIndex = (_handPrintIndex +1 )% _handPrints.Length;
+        _handPrint.sprite = _handPrints[_handPrintIndex];
         //float width = _infoText.preferredWidth;
         float height = _infoText.preferredHeight;
         _infoRect.sizeDelta = new Vector2(_infoRect.sizeDelta.x, height);
         _scrollView.verticalNormalizedPosition = 1f;
+    }
+
+    private string GetSentence(CurrentLevel level)
+    {
+        if (level == CurrentLevel.Safe) return "Minor Corrective";
+        else if (level == CurrentLevel.Injury) return "Major Corrective";
+        else return "Deletion";
     }
 }
 

@@ -258,6 +258,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2294
+--- !u!114 &-4482640257815075536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Buttons/TurnDial
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/Buttons/TurnDial
+  Guid:
+    Data1: -543851184
+    Data2: 1222182429
+    Data3: 1597500057
+    Data4: -1039638053
+  Banks:
+  - {fileID: -1793207679979111081}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 1530645354475153154}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 281
 --- !u!114 &-3994708919439666206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,7 +490,7 @@ MonoBehaviour:
   Path: Assets/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639091085000188114
+  lastModified: 639092049973223673
   FileSizes: []
   Exists: 1
 --- !u!114 &-1783511172888358267
@@ -584,17 +612,19 @@ MonoBehaviour:
   - {fileID: -2264463029279207900}
   - {fileID: -2376208186606243494}
   - {fileID: 7612293892125365346}
+  - {fileID: -4482640257815075536}
   EditorParameters:
   - {fileID: 3072474209794575902}
   - {fileID: -7331469427764824385}
   - {fileID: -1084816683778630615}
   - {fileID: -7444685413373038591}
+  - {fileID: 8847977434307590179}
   MasterBanks:
   - {fileID: -1793207679979111081}
   StringsBanks:
   - {fileID: 568237888837867035}
   cacheVersion: 131858
-  cacheTime: 639091085000282712
+  cacheTime: 639092049973312520
   SerializableEventsDict:
   - key: event:/SFX/Chair/Shock
     index: 0
@@ -646,6 +676,8 @@ MonoBehaviour:
     index: 23
   - key: event:/SFX/Buttons/ButtonStop
     index: 24
+  - key: event:/SFX/Buttons/TurnDial
+    index: 25
 --- !u!114 &151454856753211478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,10 +721,34 @@ MonoBehaviour:
   Path: Assets/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639091085000282712
+  lastModified: 639092049973312520
   FileSizes:
   - Name: 
-    Value: 2464
+    Value: 2548
+  Exists: 1
+--- !u!114 &1530645354475153154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/TurnDial/Dialmodulation
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Dialmodulation
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 598456957
+    data2: 1712688324
+  Type: 0
+  IsGlobal: 1
+  Labels: []
   Exists: 1
 --- !u!114 &2062549916488321136
 MonoBehaviour:
@@ -963,6 +1019,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 60
+--- !u!114 &8847977434307590179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Dialmodulation
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Dialmodulation
+  StudioPath: parameter:/Dialmodulation
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 598456957
+    data2: 1712688324
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &9062770132608187801
 MonoBehaviour:
   m_ObjectHideFlags: 0

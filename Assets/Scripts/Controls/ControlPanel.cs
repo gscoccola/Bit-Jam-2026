@@ -8,6 +8,7 @@ public class ControlPanel : Singleton<ControlPanel>
     [Header("Parameters")]
     [SerializeField] private float _currentInjuryThreshold = 0.3f;
     [SerializeField] private float _currentLethalThreshold = 0.6f;
+    [SerializeField] private int _dialTickAmount = 10;
 
 
     [Header("Control Panel Components")]
@@ -23,7 +24,7 @@ public class ControlPanel : Singleton<ControlPanel>
     [SerializeField] private SpriteRenderer _outputIndicator;
 
     [Header("SFX")]
-    //[SerializeField] private StudioEventEmitter _currentDialSound;
+    [SerializeField] private StudioEventEmitter _currentDialSound;
     [SerializeField] private StudioEventEmitter _outputSwitchSound;
     [SerializeField] private StudioEventEmitter _leverSound;
 
@@ -32,10 +33,11 @@ public class ControlPanel : Singleton<ControlPanel>
     private Draggable _engageDialDraggable;
     private Draggable _outputSwitchDraggable;
     private AutoReturn _outputSwitchAutoreturn;
+    private int _lastDialTick;
     protected override void Awake()
     {
         base.Awake();
-        _currentDial.ValueChanged.AddListener(value => _currentSlider.value = value);
+        _currentDial.ValueChanged.AddListener(SetDialValue);
         _engageLever.Activated.AddListener(TryEngageChair);
         _outputSwitch.Activated.AddListener(isOn => 
             { _outputIndicator.sprite = isOn ? _outputIndicatorSprites[1] : _outputIndicatorSprites[0];
@@ -45,6 +47,16 @@ public class ControlPanel : Singleton<ControlPanel>
         _engageDialDraggable = _engageLever.GetComponent<Draggable>();
         _outputSwitchDraggable = _outputSwitch.GetComponent<Draggable>();
         _outputSwitchAutoreturn = _outputSwitch.GetComponent<AutoReturn>();
+    }
+
+    private void SetDialValue(float value)
+    {
+        _currentSlider.value = value;
+        if ((int)(value * _dialTickAmount) != _lastDialTick)
+        {
+            _currentDialSound.Play();
+            _lastDialTick = (int)(value * _dialTickAmount);
+        }
     }
 
     private void TryEngageChair(bool isLeverEngaged)
@@ -106,5 +118,5 @@ public enum CurrentLevel
 {
     Safe,
     Injury,
-    Lethal
+    Lethal,
 }

@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
-    [SerializeField] private Sprite[] _interiorSprites;
+    [SerializeField] private GameObject[] _interiorPages;
 
     [Header("SFX")]
     [SerializeField] private StudioEventEmitter _openSound;
@@ -14,7 +14,6 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     private GameObject _zoomedOut;
     private Animator _bookAnim;
     private Animator _pageAnim;
-    private SpriteRenderer _interiorPage;
 
 
     private int _pageIndex;
@@ -33,10 +32,13 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         _pageAnim = _zoomedIn.transform.GetChild(1).GetComponent<Animator>();
 
 
-        _interiorPage = _zoomedIn.transform.GetChild(2).GetComponent<SpriteRenderer>();
-
         _zoomedOut.SetActive(true);
         _zoomedIn.SetActive(false);
+
+        foreach (GameObject page in _interiorPages)
+        {
+            page.SetActive(false);
+        }
     }
 
     void Update()
@@ -76,8 +78,17 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
             _pageAnim.Play("NextPage", 0, 0f);
             _animName = "NextPage";
             _pageIndex++;
-            _interiorPage.sprite = _interiorSprites[_pageIndex];
+            SetInteriorPage(_pageIndex);
         }
+    }
+
+    private void SetInteriorPage(int index)
+    {
+        foreach (GameObject page in _interiorPages)
+        {
+            page.SetActive(false);
+        }
+        _interiorPages[index].SetActive(true);
     }
 
     public void GoBackwards()
@@ -107,7 +118,7 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         _pageIndex = 0;
         _bookAnim.Play("BookOpen", 0, 0f);
         _animName = "BookOpen";
-        _interiorPage.sprite = _interiorSprites[0];
+        SetInteriorPage(0);
     }
 
     public void Close()
@@ -143,7 +154,7 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     public void OnAnimationComplete()
     {
         IsDisabled = false;
-        _interiorPage.sprite = _interiorSprites[_pageIndex];
+        SetInteriorPage(_pageIndex);
         if (_state == BookState.Closed)
         {
             ToggleZoom();

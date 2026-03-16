@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cde44bfc0aa0143857994e8ea58536, type: 3}
   m_Name: Prisoner2
   m_EditorClassIdentifier: Assembly-CSharp::PrisonerInfoSO
-  Information: Last one
+  Index: 1
+  Information: Prisoner was caught in the process of spray painting a rebellion graffiti.
+    He's young, there's still hope for him, but only if we set him straight.
   Charges:
-  - Hit & Run
-  - Theft
+  - Vandalism
+  - Loitering
   Sentence: 1
-  RebelScale: 0
-  MoralityScale: 0
