@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: Prisoner3
   m_EditorClassIdentifier: Assembly-CSharp::PrisonerInfoSO
   Index: 2
-  Information: 'At 4:06 AM PT prisoner was caught walking out of a local electronic
+  Information: At 4:06 AM PT prisoner was caught walking out of a local electronic
     store with a handful of tablets, phones & other various goods without paying.
     Prisoner proceeded to fender bender a civillians car in the process of fleeing.
-    Several eyewitnesses saw him in the act
-
-'
+    Several eyewitnesses saw him in the act.
   Charges:
   - Hit & Run
   - Theft

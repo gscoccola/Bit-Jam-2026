@@ -119,12 +119,12 @@ public class ComputerScreen : Singleton<ComputerScreen>
 
     public void SetPrisonerInfo(PrisonerInfoSO info)
     {
-        _infoText.text = info.Information + "\n\nCharges:\n" + string.Join("\n", info.Charges) + "\n\nSentence: " + GetSentence(info.Sentence);
+        _infoText.text = "\n" + info.Information + "\n\nCharges:\n" + string.Join("\n", info.Charges) + "\n\nSentence: " + GetSentence(info.Sentence) + " \n\n" + " ";
         _handPrintIndex = (_handPrintIndex +1 )% _handPrints.Length;
         _handPrint.sprite = _handPrints[_handPrintIndex];
         //float width = _infoText.preferredWidth;
         float height = _infoText.preferredHeight;
-        _infoRect.sizeDelta = new Vector2(_infoRect.sizeDelta.x, height);
+        _infoRect.sizeDelta = new Vector2(_infoRect.sizeDelta.x, height + 25f);
         _scrollView.verticalNormalizedPosition = 1f;
     }
 

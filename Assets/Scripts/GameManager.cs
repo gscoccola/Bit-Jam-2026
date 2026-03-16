@@ -42,16 +42,18 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator IBadEnding()
     {
+        IsGameOver = true;
         yield return new WaitForSeconds(2f);
         TriggerEnding(Endings.Executed);
     }
 
     public void EvaluateEnding()
     {
+        if (IsGameOver) return;
         IsGameOver = true;
         if (Morality == 2) TriggerEnding(Endings.Just);
         else if (Defiance == 2) TriggerEnding(Endings.Rebel);
-        else TriggerEnding(Endings.Incospicuous);
+        else TriggerEnding(Endings.Inconspicuous);
     }
 
     private void TriggerEnding(Endings ending)
@@ -59,10 +61,10 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("Game Ended");
         transform.GetChild(0).gameObject.SetActive(true);
         _endingText.text = $"Ending {((int)ending + 1).ToString()}/4, {ending.ToString()}";
-        if (ending == Endings.Executed) _flavorText.text = "You were executed for your crimes";
-        else if (ending == Endings.Rebel) _flavorText.text = "You helped the rebellion";
-        else if (ending == Endings.Incospicuous) _flavorText.text = "You just did your job";
+        if (ending == Endings.Executed) _flavorText.text = "You were executed for your disobedience";
+        else if (ending == Endings.Rebel) _flavorText.text = "You helped the rebellion grow";
         else if (ending == Endings.Just) _flavorText.text = "You stood up for the innocent";
+        else if (ending == Endings.Inconspicuous) _flavorText.text = "You just did your job";
     }
 
 
@@ -79,7 +81,7 @@ public enum Endings
     Executed,
     Just,
     Rebel,
-    Incospicuous
+    Inconspicuous
 }
 
 [System.Serializable]

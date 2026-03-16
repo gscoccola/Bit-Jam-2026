@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: Prisoner0
   m_EditorClassIdentifier: Assembly-CSharp::PrisonerInfoSO
   Index: 0
-  Information: 'Prisoner murdered 4 other prisoners during an altercation after threats
+  Information: Prisoner murdered 4 other prisoners during an altercation after threats
     where uttered. This happened in his cell pod after being moved out of the SHU
     where he was staying due to littering. It was all caught in HD CCTV.
-
-
-'
   Charges:
   - Murder
   - Littering

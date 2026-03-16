@@ -91,7 +91,7 @@ public class PersonManager : Singleton<PersonManager>
 
         _BGM.SetParameter("LowPass", 50f);
 
-        yield return new WaitForSeconds(_shockDuration);
+        yield return new WaitForSeconds(_shockDuration * (0.4f + (int)level * 0.2f ) );
 
         ControlPanel.Instance.StartWindown();
 
