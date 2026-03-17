@@ -163,6 +163,16 @@ public class Handbook : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         {
             _state = BookState.Opened;
         }
+
+    }
+
+    public void OnGameOver()
+    {
+        if (_state == BookState.Opened)
+        {
+            Close();
+        }
+        IsDisabled = true;
     }
     
     public enum BookState

@@ -51,6 +51,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-7380428477207921997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ending/ComputerShutDown
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Ending/ComputerShutDown
+  Guid:
+    Data1: 2003515373
+    Data2: 1079283909
+    Data3: -159207548
+    Data4: -1374153125
+  Banks:
+  - {fileID: -1793207679979111081}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2302
 --- !u!114 &-7331469427764824385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,6 +367,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &-2878042374612882415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ending/CupPlace
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Ending/CupPlace
+  Guid:
+    Data1: -1745779738
+    Data2: 1158415927
+    Data3: -1832839013
+    Data4: -777170447
+  Banks:
+  - {fileID: -1793207679979111081}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1642
 --- !u!114 &-2727534562408464854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,7 +544,7 @@ MonoBehaviour:
   Path: Assets/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639092049973223673
+  lastModified: 639092793558633692
   FileSizes: []
   Exists: 1
 --- !u!114 &-1783511172888358267
@@ -613,6 +667,12 @@ MonoBehaviour:
   - {fileID: -2376208186606243494}
   - {fileID: 7612293892125365346}
   - {fileID: -4482640257815075536}
+  - {fileID: 2693099165945702866}
+  - {fileID: 4350704227784742037}
+  - {fileID: 6448181471762714171}
+  - {fileID: 8852806513891870863}
+  - {fileID: -2878042374612882415}
+  - {fileID: -7380428477207921997}
   EditorParameters:
   - {fileID: 3072474209794575902}
   - {fileID: -7331469427764824385}
@@ -624,7 +684,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 568237888837867035}
   cacheVersion: 131858
-  cacheTime: 639092049973312520
+  cacheTime: 639092793558766754
   SerializableEventsDict:
   - key: event:/SFX/Chair/Shock
     index: 0
@@ -678,6 +738,18 @@ MonoBehaviour:
     index: 24
   - key: event:/SFX/Buttons/TurnDial
     index: 25
+  - key: event:/Ending/ExecuteEnding
+    index: 26
+  - key: event:/Ending/CoffeeSlurp
+    index: 27
+  - key: event:/Ending/Smoke
+    index: 28
+  - key: event:/Ending/CupMove
+    index: 29
+  - key: event:/Ending/CupPlace
+    index: 30
+  - key: event:/Ending/ComputerShutDown
+    index: 31
 --- !u!114 &151454856753211478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,10 +793,10 @@ MonoBehaviour:
   Path: Assets/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639092049973312520
+  lastModified: 639092793558766754
   FileSizes:
   - Name: 
-    Value: 2548
+    Value: 2844
   Exists: 1
 --- !u!114 &1530645354475153154
 MonoBehaviour:
@@ -777,6 +849,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2687
+--- !u!114 &2693099165945702866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ending/ExecuteEnding
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Ending/ExecuteEnding
+  Guid:
+    Data1: -1418939872
+    Data2: 1234642582
+    Data3: -941099588
+    Data4: 922284891
+  Banks:
+  - {fileID: -1793207679979111081}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7561
 --- !u!114 &3072474209794575902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,6 +954,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2609
+--- !u!114 &4350704227784742037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ending/CoffeeSlurp
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Ending/CoffeeSlurp
+  Guid:
+    Data1: 570564659
+    Data2: 1214904362
+    Data3: -1825245540
+    Data4: 654358871
+  Banks:
+  - {fileID: -1793207679979111081}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1018
 --- !u!114 &4517027464958611891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,6 +1035,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3752
+--- !u!114 &6448181471762714171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ending/Smoke
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Ending/Smoke
+  Guid:
+    Data1: -145876393
+    Data2: 1320001206
+    Data3: 1247543722
+    Data4: 1240140640
+  Banks:
+  - {fileID: -1793207679979111081}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2627
 --- !u!114 &7612293892125365346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,6 +1196,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &8852806513891870863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ending/CupMove
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Ending/CupMove
+  Guid:
+    Data1: -1798070639
+    Data2: 1292271717
+    Data3: -2130408775
+    Data4: 2093079506
+  Banks:
+  - {fileID: -1793207679979111081}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 408
 --- !u!114 &9062770132608187801
 MonoBehaviour:
   m_ObjectHideFlags: 0
