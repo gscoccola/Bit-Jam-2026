@@ -5,10 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScreen : MonoBehaviour
 {
+    private Transition _transition;
 
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return new WaitForSecondsRealtime(0.25f);
-        SceneManager.LoadScene("MainMenu");
+        _transition = FindAnyObjectByType<Transition>();
+        _transition.FinishedFadeIn.AddListener(()=> SceneManager.LoadScene("MainMenu"));
+    }
+
+    public void OnClick()
+    {
+        _transition.StartTransition();
     }
 }

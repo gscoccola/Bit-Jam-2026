@@ -13,8 +13,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private StudioEventEmitter _menuBack;
     [SerializeField] private StudioEventEmitter _BGM;
 
+    private Transition _transition;
+
     private void Start()
     {
+        _transition = FindAnyObjectByType<Transition>();
+        _transition.FinishedFadeIn.AddListener(() => SceneManager.LoadScene("Level"));
         mainMenuPanel.SetActive(true);
         creditsPanel.SetActive(false);
         _BGM.Play();
@@ -29,9 +33,8 @@ public class MainMenu : MonoBehaviour
     {
         _menuClick.Play();
         yield return new WaitForSeconds(0.25f);
+        _transition.StartTransition();
         _BGM.Stop();
-        yield return new WaitForSeconds(0.25f);
-        SceneManager.LoadScene("Level");
     }
 
     public void ToggleCredits()
